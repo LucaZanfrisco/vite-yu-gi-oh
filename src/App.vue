@@ -26,7 +26,6 @@
             card_images
           })
         }
-        this.store.cardListFound = this.store.cardList.length;
       })
   }
   }
