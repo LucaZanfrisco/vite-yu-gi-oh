@@ -8,7 +8,7 @@ export default {
     <header>
         <div class="container">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 my-3">
                     <h1>Yu-Gi-Oh API</h1>
                 </div>
             </div>
@@ -17,5 +17,8 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-    
+@use '../assets/scss/_partial/variables' as *;
+    header{
+        background-color: $fourth-color;
+    }
 </style>
