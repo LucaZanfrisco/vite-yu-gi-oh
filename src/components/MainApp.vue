@@ -17,11 +17,8 @@ export default {
     <main class="container my-5 rounded-3 py-3">
         <div class="row">
             <div class="col col-sm-3 m-3">
-                <select name="card-type" id="card-type" class="form-select">
-                    <option selected disabled>Select card type</option>
-                    <option value="alien">Alien</option>
-                    <option value="human">Human</option>
-                    <option value="mage">Mage</option>
+                <select name="card-type" id="card-type" class="form-select" @change="$emit('archtype')" v-model="store.archtypeSelected">
+                    <option v-for="archtype in store.archtypeList"  >{{ archtype.archetype_name }}</option>
                 </select>
             </div>
         </div>
@@ -29,7 +26,7 @@ export default {
             <div class="founded p-3 rounded my-2">
                 Card Found: {{ store.cardListFound = store.cardList.length }}
             </div>
-            <div class="row row-cols-sm-3 row-cols-lg-5 mt-4 mx-auto text-center gy-4" v-if="store.cardList.length === 40">
+            <div class="row row-cols-sm-3 row-cols-lg-5 mt-4 mx-auto text-center gy-4" v-if="store.cardList.length">
                 <CardElement v-for="card in store.cardList" :img="card.card_images[0].image_url" :name="card.name"
                     :archetype="card.archetype"></CardElement>
             </div>
