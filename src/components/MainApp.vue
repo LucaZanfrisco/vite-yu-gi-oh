@@ -18,6 +18,7 @@ export default {
         <div class="row">
             <div class="col col-sm-3 m-3">
                 <select name="card-type" id="card-type" class="form-select" @change="$emit('archtype')" v-model="store.archtypeSelected">
+                    <option value="">All</option>
                     <option v-for="archtype in store.archtypeList"  >{{ archtype.archetype_name }}</option>
                 </select>
             </div>

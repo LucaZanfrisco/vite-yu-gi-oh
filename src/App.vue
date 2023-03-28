@@ -16,23 +16,40 @@ export default {
   },
   methods: {
     archetypeSelect() {
-      this.store.cardList = [];
-      axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php', {
-        params: {
-          archetype: this.store.archtypeSelected
-        }
-      })
-        .then((result) => {
-          for (let i = 0; i < 30; i++) {
-            const { id, name, archetype, card_images } = result.data.data[i];
-            this.store.cardList.push({
-              id,
-              name,
-              archetype,
-              card_images
-            })
+      if (this.store.archtypeSelected !== '') {
+        this.store.cardList = [];
+        axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php', {
+          params: {
+            archetype: this.store.archtypeSelected
           }
         })
+          .then((result) => {
+            for (let i = 0; i < 30; i++) {
+              const { id, name, archetype, card_images } = result.data.data[i];
+              this.store.cardList.push({
+                id,
+                name,
+                archetype,
+                card_images
+              })
+            }
+          })
+      }else{
+        this.store.cardList = [];
+        axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php')
+        .then((result) => {
+            for (let i = 0; i < 30; i++) {
+              const { id, name, archetype, card_images } = result.data.data[i];
+              this.store.cardList.push({
+                id,
+                name,
+                archetype,
+                card_images
+              })
+            }
+          })
+      }
+
     }
   },
   created() {
